@@ -1,0 +1,42 @@
+buildscript {
+    ext {
+        springBootVersion = '1.5.7.RELEASE'
+    }
+    repositories {
+        maven {
+     	 url "https://plugins.gradle.org/m2/"
+    		}
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.7.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot' 
+
+jar {
+    baseName = 'gs-accessing-data-mysql'
+    version = '0.1.0'
+}
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    testCompile("org.springframework.boot:spring-boot-starter-test") 
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	compile("mysql:mysql-connector-java")
+	compile("org.springframework.boot:spring-boot-starter-web")
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.6'
+}
