@@ -1,0 +1,21 @@
+<div class="row">
+  <div *ngFor="let event of events" class="col-sm-6" (mouseover)="onSelect(event)" 
+  [class.selected]="event === selectedEvent">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{event.event_name}}</h5>
+        <p class="card-text">Date: {{event.date | date: short}}</p>
+        <p class="card-text">Time: {{event.start_time}} -- {{event.end_time}}</p>
+        <p class="card-text">Address: {{event.address}}</p>
+        <p class="card-text">Event Type: {{event.event_type}}</p>
+        <p class="card-text">Dress Code: {{event.dress_code}}</p>
+        <p class="card-text">Creator: {{event.creator_id}}</p>
+        <p class="card-text">Description: {{event.description}}</p>
+        <a href="#" (click)="test()" class="btn btn-primary">Register</a>
+        <!--This (click)="test()" also works. Can be implemented in register component-->
+        <register-event [event_idr]="event_idr"></register-event>
+      </div>
+    </div>
+  </div>
+</div>
+  

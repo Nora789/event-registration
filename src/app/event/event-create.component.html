@@ -1,0 +1,96 @@
+<div class="container-fluid">
+  <div>
+  <!-- Content here -->
+  <nav class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+      <a class="navbar-brand" href="#">Event Registration</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/create" routerLinkActive="active">Create<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">My Events</a>
+          </li>
+        </ul>
+        <form class="form-inline my-2 mx-1 my-lg-0">
+            <event-search></event-search>
+          </form>
+        <span class="navbar-text mx-1">
+          <google-signin></google-signin>
+        </span>
+      </div>
+    </nav>
+    <div class="pt-5 mb-2">
+      <p> </p>&nbsp;
+    </div>
+    <div class="px-3 mb-2">
+      <h4>Create a Event</h4>
+      
+      <div class="w-50">
+        <form>
+          <div class="form-group">
+              <label for="address">Creator Email</label>
+              <input [(ngModel)]="newEvent.creator_id" type="text" class="form-control" id="creator" placeholder="{{this.user_idr}}" name="creator" readonly>
+          </div>
+          <div class="form-group">
+              <label for="eventId">Event ID</label>
+              <input type="text" class="form-control" id="eventId" placeholder="Auto-generate" readonly>
+          </div>
+          <div class="form-group">
+            <label for="eventName">Event Name</label>
+            <input [(ngModel)]="newEvent.event_name" type="text" class="form-control" id="eventName" placeholder="Enter event name" name="event_name">
+          </div>
+          <div class="form-group">
+              <label for="date">Date</label>
+              <input [(ngModel)]="newEvent.date" type="date" class="form-control" id="date" placeholder="Enter event date" name="date">
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                  <label for="date">Start Time</label>
+                  <input [(ngModel)]="newEvent.start_time" type="time" class="form-control" id="time" placeholder="Enter event time" name="stime">
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                  <label for="date">End Time</label>
+                  <input [(ngModel)]="newEvent.end_time" type="time" class="form-control" id="time" placeholder="Enter event time" name="etime">
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+              <label for="address">Address</label>
+              <input [(ngModel)]="newEvent.address" type="text" class="form-control" id="address" placeholder="Enter event address" name="address">
+          </div>
+          <div class="form-group">
+              <label for="eventType">Event Type</label>
+              <select [(ngModel)]="newEvent.event_type" class="form-control" id="eventType" name="event_type">
+                  <option>Public</option>
+                  <option>Invited Only</option>
+              </select>
+          </div>
+          <div class="form-group">
+              <label for="dressCode">Dress Code</label>
+              <select [(ngModel)]="newEvent.dress_code" class="form-control" id="dressCode" name="dress_code">
+                  <option>Casual</option>
+                  <option>Formal</option>
+              </select>
+          </div>
+          <div class="form-group">
+              <label for="description">Event Description</label>
+              <textarea [(ngModel)]="newEvent.description" class="form-control" id="description" rows="4" name="description"></textarea>
+            </div>
+          <button type="submit" class="btn btn-primary" (click)="createEvent(newEvent)">Create Event</button>
+          <button type="submit" class="btn btn-primary" (click)="goBack()">Cancel</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>

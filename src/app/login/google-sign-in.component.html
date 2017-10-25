@@ -1,0 +1,6 @@
+<div id="my-signin2" class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" [hidden]="fShowInfo" (click)="createUser(newUser)"></div>
+<div [hidden]=!fShowInfo *ngIf="fShowInfo">
+    {{userProfile.name}}
+</div>
+<a href="http://localhost:4200" (click)="signOut();" [hidden]="!fShowInfo">Sign out</a>
+<!--<input #searchBox1 id="search-box1" class="form-control mr-sm-2" type="text" placeholder="Search">-->
