@@ -16,6 +16,7 @@ export class EventComponent implements OnInit {
     newEvent: Event;
     event_idr: number;
     user_idr: string;
+    eShowInfo = false;
 
     constructor(private eventService: EventService,
                 private router: Router,
@@ -31,12 +32,17 @@ export class EventComponent implements OnInit {
     }
     
     ngOnInit(): void {
-        this.eventService.getAllEvents().then(events => this.events = events);
+        //this.eventService.getAllEvents().then(events => this.events = events);
+        this.getEvents();
         this.newEvent = new Event();
         //this.userService.currentUser.subscribe(user_idr => this.user_idr);
         this.userService.user_idr$.subscribe(user_idr$ => this.user_idr = user_idr$);
+        console.log(this.events);
     }
 
+    getEvents(): void {
+        this.eventService.getAllEvents().then(events => this.events = events);
+    }
     //event_idr = this.selectedEvent.event_id;//pass this value to child component "registration"
     //This causes problem
 
@@ -57,10 +63,8 @@ export class EventComponent implements OnInit {
     }//then we let another function call register() here to determine user_id
     */
 
-    
-
-    showInfo(event: Event): void {
+    gotoDetail(event: Event): void {
         this.selectedEvent = event;
-        this.router.navigate(['/information', this.selectedEvent.event_id]);
-    }
+        this.router.navigate(['/detail', this.selectedEvent.event_id]);
+      }
 }

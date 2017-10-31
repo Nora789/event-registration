@@ -1,17 +1,20 @@
 package com.model;
 
+//import model.Event;
+
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+//import org.hibernate.annotations.GenericGenerator;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -22,7 +25,6 @@ import javax.persistence.JoinColumn;
 @Table(name = "user")
 public class User {
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
 	@Column(name = "user_id")
 	private String user_id;
 	private String fname;
@@ -31,11 +33,22 @@ public class User {
 	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JsonBackReference
-	@JoinTable(name = "registration", 
+	@JoinTable(name = "registration_e", 
 			joinColumns = @JoinColumn(name = "ruser_id", referencedColumnName = "user_id"), 
 			inverseJoinColumns = @JoinColumn(name = "revent_id", referencedColumnName = "event_id"))
-	private Set<Event> event = new HashSet<Event>();
+	private Set<Event> events = new HashSet<Event>();
 	
+	
+	/*
+	@OneToMany (mappedBy = "user")
+	private Set<Registration> registrations;
+	public Set<Registration> getRegistrations() {
+		return registrations;
+	}
+	
+	public void setRegistrations(Set<Registration> registrations) {
+		this.registrations = registrations;
+	}*/
 	
 	public User() { }
 	
@@ -81,13 +94,29 @@ public class User {
 	}
 
 
-	public Set<Event> getEvent() {
-		return event;
+	public Set<Event> getEvents() {
+		return events;
 	}
 
 
-	public void setEvent(Set<Event> event) {
-		this.event = event;
+	public void setEvents(Set<Event> events) {
+		this.events = events;
 	}
+
+	
+	
+	@Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (!(obj instanceof User))
+            return false;
+        User other = (User) obj;
+        if (user_id != other.user_id)
+            return false;
+        return true;
+    }
 	
 }

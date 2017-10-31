@@ -1,19 +1,49 @@
-<div class="row">
-  <div *ngFor="let event of events" class="col-sm-6" (mouseover)="onSelect(event)" 
-  [class.selected]="event === selectedEvent">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">{{event.event_name}}</h5>
-        <p class="card-text">Date: {{event.date | date: short}}</p>
-        <p class="card-text">Time: {{event.start_time}} -- {{event.end_time}}</p>
-        <p class="card-text">Address: {{event.address}}</p>
-        <p class="card-text">Event Type: {{event.event_type}}</p>
-        <p class="card-text">Dress Code: {{event.dress_code}}</p>
-        <p class="card-text">Creator: {{event.creator_id}}</p>
-        <p class="card-text">Description: {{event.description}}</p>
-        <a href="#" (click)="test()" class="btn btn-primary">Register</a>
-        <!--This (click)="test()" also works. Can be implemented in register component-->
-        <register-event [event_idr]="event_idr"></register-event>
+<div class="px-3 mb-2">
+  <h4>Available Events</h4>
+  <div class="row">
+    <div *ngFor="let event of events" class="col-sm-6" (click)="onSelect(event)">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{event.event_name}}</h5>
+          <p class="card-text">Date: {{event.date | date: short}}</p>
+          <p class="card-text">Time: {{event.start_time}} -- {{event.end_time}}</p>
+        
+            <!--This (click)="test()" also works. Can be implemented in register component-->
+            <!--<button class="btn btn-primary" (click)="gotoDetail()" routerLink="detail/:id">View Details</button>-->
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#eventDetails">
+                View Details
+            </button>
+            <!-- Modal -->
+            <div class="modal fade" id="eventDetails" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLongTitle">Event Details</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                        <h5 class="card-title">{{selectedEvent.event_name}}</h5>
+                        <p class="card-text">Date: {{selectedEvent.date | date: short}}</p>
+                        <p class="card-text">Time: {{selectedEvent.start_time}} -- {{selectedEvent.end_time}}</p>
+                        <p class="card-text">Address: {{selectedEvent.address}}</p>
+                        <p class="card-text">Event Type: {{selectedEvent.event_type}}</p>
+                        <p class="card-text">Dress Code: {{selectedEvent.dress_code}}</p>
+                        <p class="card-text">Creator: {{selectedEvent.creator_id}}</p>
+                        <p class="card-text">Description: {{selectedEvent.description}}</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <register-event [event_idr]="event_idr"></register-event>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            
+
+        </div>
       </div>
     </div>
   </div>

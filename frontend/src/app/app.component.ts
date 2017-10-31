@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Event } from './event/event';
 import { EventService } from './event/event.service';
 import { GoogleSignInComponent } from './login/google-sign-in.component';
@@ -13,10 +13,10 @@ import { UserService } from './login/user.service';
   styleUrls: ['./app.component.css'],
   providers: [UserService]
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'Event Registration';
 
-  ngOnInit() {
-    
+  public onActivate(event: any) {
+    console.log(event);
   }
 }

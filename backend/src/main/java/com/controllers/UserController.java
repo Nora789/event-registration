@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.model.User;
-import com.repositories.UserRepository;
+//import com.repositories.UserRepository;
 import com.model.Event;
 import com.services.UserService;
 
@@ -22,31 +22,44 @@ import com.services.UserService;
 public class UserController {
 	@Autowired
 	private UserService userService;
-	private UserRepository userRepository;
+	//private UserRepository userRepository;
 	
 	@RequestMapping(value = "/allUsers", method = RequestMethod.GET)
 	public List<User> getAllUsers() {
 		return userService.getAllUsers();
 	}
 	
-	@RequestMapping(value = "/getUser/{user_id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/getUser/{user_id:.+com}", method = RequestMethod.GET)
 	public User getUser(@PathVariable("user_id") String user_id) {
 		return userService.getUser(user_id);
 	}
+	
+	/*
+	@RequestMapping(value = "/getUser/{user_id}", method = RequestMethod.GET)
+	public User getUser1(@PathVariable("user_id") String user_id) {
+		return userService.getUser(user_id);
+	}*/
 	
 	@RequestMapping(value = "/createUser", method = RequestMethod.POST)
 	public User createUser(@RequestBody User user) {
 		return userService.createUser(user);
 	}
 	
-	@RequestMapping(value = "/deleteUser/{user_id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/deleteUser/{user_id:.+com}", method = RequestMethod.GET)
 	public void deleteUser(@PathVariable("user_id") String user_id) {
 		userService.deleteUser(user_id);
 	}
 	
-	@RequestMapping(value = "/{user_id}/events", method = RequestMethod.GET)
+	@RequestMapping(value = "/events/{user_id:.+com}", method = RequestMethod.GET)
 	public ResponseEntity<Collection<Event>> getUserEvents(@PathVariable String user_id) {
-		User user = userRepository.findOne(user_id);
-		return new ResponseEntity<>(user.getEvent(), HttpStatus.OK);
+		//System.out.println(user_id);
+		User user = userService.getUser(user_id);
+		
+		if (user != null) {
+			return new ResponseEntity<>(user.getEvents(), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		}
 	}
+
 }

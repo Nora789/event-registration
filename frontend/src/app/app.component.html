@@ -1,41 +1,10 @@
 <div class="container-fluid">
   <div>
   <!-- Content here -->
-  <nav class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
-      <a class="navbar-brand" href="#">Event Registration</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/create" routerLinkActive="active">Create</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">My Events</a>
-          </li>
-        </ul>
-        <form class="form-inline my-2 mx-1 my-lg-0">
-            <event-search></event-search>
-          </form>
-        <span class="navbar-text mx-1">
-          <google-signin></google-signin>
-        </span>
-      </div>
-    </nav>
+  <my-navigator></my-navigator>
     <div class="pt-5 mb-2">
       <p> </p>&nbsp;
-    </div>
-    <div class="px-3 mb-2">
-      <h4>Available Events</h4>
-      <app-events></app-events>
-      
-    </div>
     <router-outlet></router-outlet>
-  </div>
 </div>
 
 

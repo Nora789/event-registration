@@ -3,6 +3,7 @@ package com.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -33,11 +36,25 @@ public class Event {
 	private String start_time;
 	private String end_time;
 	
+	
 	@ManyToMany
-	@JoinTable(name = "registration", 
+	@JoinTable(name = "registration_e", 
 			joinColumns = @JoinColumn(name = "revent_id", referencedColumnName = "event_id"), 
 			inverseJoinColumns = @JoinColumn(name = "ruser_id", referencedColumnName = "user_id"))
-	private Set<User> user = new HashSet<User>();
+	private Set<User> users = new HashSet<User>();
+	
+	
+	/*
+	@OneToMany(targetEntity = RegistrationId.class, mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Registration> registrations;
+	public Set<Registration> getRegistrations() {
+		return registrations;
+	}
+	
+	public void setRegistration(Set<Registration> registrations) {
+		this.registrations = registrations;
+	}*/
+	
 	
 	
 	public Integer getEvent_id() {
@@ -119,14 +136,13 @@ public class Event {
 		this.address = address;
 	}
 	
-	public Set<User> getUser() {
-		return user;
+	public Set<User> getUsers() {
+		return users;
 	}
 
-	public void setUser(Set<User> user) {
-		this.user = user;
+	public void setUsers(Set<User> users) {
+		this.users = users;
 	}
-	
 
 
 	public String getStart_time() {
@@ -162,9 +178,35 @@ public class Event {
 		this.address = address;
 		this.start_time = start_time;
 		this.end_time = end_time;
-		
 	}
 
 
 	public Event() { }
+	
+	@Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + (int) (event_id ^ (event_id >>> 32));
+        return result;
+    }
+	
+	@Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (!(obj instanceof Event))
+            return false;
+        Event other = (Event) obj;
+        if (event_id != other.event_id)
+            return false;
+        if (event_name == null) {
+            if (other.event_name != null)
+                return false;
+        } else if (!event_name.equals(other.event_name))
+            return false;
+        return true;
+    }
 }

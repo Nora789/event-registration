@@ -25,7 +25,7 @@ export class GoogleSignInComponent implements AfterViewInit {
         //alert(this.user_idr);
     }
     
-    userProfile: User = {id: '',
+    userProfile: User = {user_id: '',
                          name: '',
                          fname: 'bbb',
                          lname: '',
@@ -131,6 +131,8 @@ export class GoogleSignInComponent implements AfterViewInit {
                                 //@Output() this.userProfile.email;
                             }) 
         this.userService.changeUserId(this.userProfile.email);
+        this.userService.changeUserfname(this.userProfile.fname);
+        this.userService.changeUserlname(this.userProfile.lname);
         //alert(this.user_idr);
         //alert(this.userProfile.email);
     };
@@ -139,7 +141,7 @@ export class GoogleSignInComponent implements AfterViewInit {
         this.userService.createUser(user)
             .then(user => {
                 this.users.push(user);
-                user.id = this.userProfile.email;
+                user.user_id = this.userProfile.email;
                 user.fname = this.userProfile.fname;
                 user.lname = this.userProfile.lname;
                 user.email = this.userProfile.email;
