@@ -1,7 +1,16 @@
-<!--<div>
-    <form [hidden]="submitted" (ngSubmit)="onSubmit()" #registerForm="ngForm">
-        <button type="button" class="btn btn-primary" (click)="register()">Register</a>
-    </form>
-    <form></form>
-</div>-->
-<a href="#" (click)="testr()" class="btn btn-primary">Register2</a>
+
+<div [hidden]=false>
+        <form>
+          <div class="form-group">
+              <label for="address">User Id</label>
+              <input [(ngModel)]="newRegistration.user_id" type="text" class="form-control" id="userid" placeholder="{{this.user_idr}}" name="userId" readonly>
+          </div>
+          <div class="form-group">
+              <label for="eventId">Event Id</label>
+              <input [(ngModel)]="newRegistration.event_id" type="text" class="form-control" id="eventid" placeholder="{{this.event_idr}}" name="eventId">
+          </div>
+        </form>
+</div>
+<button type="submit" class="btn btn-primary" (click)="register(newRegistration)">Register</button>
+
+<a href="#" (click)="testr()" class="btn btn-primary">test</a>

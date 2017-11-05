@@ -1,0 +1,48 @@
+<div class="px-3 mb-2">
+  <ngb-tabset type="pills" justify="center">
+    <ngb-tab title="As Guest">
+      <ng-template ngbTabContent>
+        <br/>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Special title treatment</h4>
+                  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Special title treatment</h4>
+                  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </ngb-tab>
+    <ngb-tab title="As Host">
+      <ng-template ngbTabContent>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid.
+        <br/>
+        
+        <div class="row">
+            <div class="col-sm-6" *ngFor="let event of events | eventfilter: filterEvent">
+            <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">{{event.event_name}}</h5>
+                  <p class="card-text"><strong>Date: </strong>{{event.date | date: short}}</p>
+                  <p class="card-text"><strong>Time: </strong>{{event.start_time}} -- {{event.end_time}}</p>
+                  <button type="button" class="btn btn-primary" (click)="test()">test user id</button>
+                </div>
+            </div>
+            </div>
+            
+        </div>
+      </ng-template>
+    </ngb-tab>
+  </ngb-tabset>
+</div>

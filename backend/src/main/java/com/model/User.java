@@ -33,7 +33,7 @@ public class User {
 	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JsonBackReference
-	@JoinTable(name = "registration_e", 
+	@JoinTable(name = "registration", 
 			joinColumns = @JoinColumn(name = "ruser_id", referencedColumnName = "user_id"), 
 			inverseJoinColumns = @JoinColumn(name = "revent_id", referencedColumnName = "event_id"))
 	private Set<Event> events = new HashSet<Event>();
