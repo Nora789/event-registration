@@ -15,12 +15,16 @@ export class RegistrationService {
 
     constructor(private http: Http) { }
 
-    @Input() event_idr: number;
-    @Input() user_idr: number;
+
+    getAllRegistrations(): Promise<Registration[]> {
+        return this.http.get(this.registrationUrl + "/allRegistrations")
+                        .toPromise()
+                        .then(response => response.json() as Registration[])
+                        .catch(this.handleError);
+    }
 
     register(registration: Registration): Promise<Registration> {
-        const url = `${this.registrationUrl}/register/${this.event_idr} + ${this.user_idr}`;
-        alert("event_idr");
+        //alert(this.event_idr);
         return this.http
                    .post(this.registrationUrl + "/register", JSON.stringify(registration), { headers: this.headers })
                    .toPromise()
@@ -28,14 +32,29 @@ export class RegistrationService {
                    .catch(this.handleError);
     }
 
-    /*
-    updateRegisatration(registration: Registration): Promise<Registration> {
-        return this.http
-                   .post(this.registrationUrl + "/updateRegistration", JSON.stringify(registration), { headers: this.headers })
+    deleteRegistration(registration: Registration): Promise<void> {
+        const url = `${this.registrationUrl}/deleteMyRegistration/${registration.registration_id}`;
+        return this.http.get(url, { headers: this.headers })
+                        .toPromise()
+                        .then(() => null)
+                        .catch(this.handleError);
+    }
+
+    getEventByUser(userId: string): Promise<Event[]> {
+        const url = `${this.registrationUrl}/getEventByUser/${userId}`;
+        return this.http.get(url)
                    .toPromise()
-                   .then(() => registration)
+                   .then(response => response.json() as Event[])
                    .catch(this.handleError);
-    }*/
+    }
+
+    getUserByEvent(eventId: number): Promise<User[]> {
+        const url = `${this.registrationUrl}/getUserByEvent/${eventId}`;
+        return this.http.get(url)
+        .toPromise()
+        .then(response => response.json() as User[])
+        .catch(this.handleError);
+    }
 
     private handleError(error: any):
 	Promise<any> {

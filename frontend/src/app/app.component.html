@@ -4,7 +4,9 @@
   <my-navigator></my-navigator>
     <div class="pt-5 mb-2">
       <p> </p>&nbsp;
-    <router-outlet></router-outlet>
+    <router-outlet (activate)="onActivate($event)"></router-outlet>
+    </div>
+  </div>
 </div>
 
 

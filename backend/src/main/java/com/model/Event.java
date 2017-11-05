@@ -38,7 +38,7 @@ public class Event {
 	
 	
 	@ManyToMany
-	@JoinTable(name = "registration_e", 
+	@JoinTable(name = "registration", 
 			joinColumns = @JoinColumn(name = "revent_id", referencedColumnName = "event_id"), 
 			inverseJoinColumns = @JoinColumn(name = "ruser_id", referencedColumnName = "user_id"))
 	private Set<User> users = new HashSet<User>();

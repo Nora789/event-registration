@@ -29,10 +29,12 @@ CREATE TABLE `event` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `registration` (
+  `registration_id` int(11) NOT NULL,
   `revent_id` int(11) NOT NULL,
   `ruser_id` varchar(100) NOT NULL,
-  PRIMARY KEY (`revent_id`,`ruser_id`),
-  KEY `ruserId_idx` (`ruser_id`),
+  PRIMARY KEY (`registration_id`),
+  KEY `revent_id_idx` (`revent_id`),
+  KEY `ruser_id_idx` (`ruser_id`),
   CONSTRAINT `FK2hbjcub3d853vrt7mgijfidv8` FOREIGN KEY (`ruser_id`) REFERENCES `user` (`user_id`),
   CONSTRAINT `FKovun8x99xiq63xx879e13df3a` FOREIGN KEY (`revent_id`) REFERENCES `event` (`event_id`),
   CONSTRAINT `revent_id` FOREIGN KEY (`revent_id`) REFERENCES `event` (`event_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,

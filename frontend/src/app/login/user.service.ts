@@ -83,7 +83,7 @@ export class UserService {
                         .catch(this.handleError);
     }
 
-    getUserEvents(userId: string): Promise<Event[]> {
+    getEventsByUser(userId: string): Promise<Event[]> {
         const url = `${this.usersUrl}/events/${userId}`;
         return this.http.get(url)
                    .toPromise()

@@ -16,7 +16,7 @@ export class EventComponent implements OnInit {
     newEvent: Event;
     event_idr: number;
     user_idr: string;
-    eShowInfo = false;
+    closeResult: string;
 
     constructor(private eventService: EventService,
                 private router: Router,
@@ -66,5 +66,5 @@ export class EventComponent implements OnInit {
     gotoDetail(event: Event): void {
         this.selectedEvent = event;
         this.router.navigate(['/detail', this.selectedEvent.event_id]);
-      }
+    }
 }

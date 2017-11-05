@@ -1,6 +1,5 @@
 import { Component, OnInit, ElementRef, AfterViewInit, NgZone, Output } from '@angular/core';
 import { AuthService, AppGlobals } from 'angular2-google-login';
-import { NgbPopoverConfig } from '@ng-bootstrap/ng-bootstrap';
 import { User } from './user';
 import { UserService } from './user.service';
 
@@ -10,17 +9,13 @@ declare const gapi: any;
     selector: 'google-signin',
     templateUrl: './google-sign-in.component.html',
     styleUrls: ['./google-sign-in.component.css'],
-    providers: [NgbPopoverConfig]
 })
 
 export class GoogleSignInComponent implements AfterViewInit {
-    constructor (private element: ElementRef, 
-                config: NgbPopoverConfig, 
+    constructor (private element: ElementRef,  
                 private zone: NgZone,
                 private userService: UserService) {
         console.log('ElementRef: ', this.element);
-        config.placement = 'bottom';
-        config.triggers = 'mouseenter';
         //this.userService.currentUser.subscribe(user_idr => this.user_idr);
         //alert(this.user_idr);
     }
@@ -73,16 +68,6 @@ export class GoogleSignInComponent implements AfterViewInit {
             console.log('Image URL: ' + profile.getImageUrl());
             console.log('Email: ' + profile.getEmail());
             
-            //Add something
-            //Maybe there needs a user service to handle the information
-            //Or just use return
-            //this.isSignedIn = that.auth2.isSignedIn.get();
-            
-
-            //Result.token = googleUser.getAuthResponse.id_token;
-            //Result.id = profile.getName();
-            //Result.image_url = profile.getImageUrl();
-            //result.setId(profile.getName());
         }, function onFailure (error) {
             console.log(JSON.stringify(error, undefined, 2));
         }
