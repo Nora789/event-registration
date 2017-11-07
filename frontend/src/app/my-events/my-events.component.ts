@@ -1,8 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { Event } from 'app/event/event';
-import { EventService } from 'app/event/event.service';
 import { UserService } from 'app/login/user.service';
+import { EventService } from 'app/event/event.service';
+
 import { DatePipe } from '@angular/common';
 
 @Component({
@@ -13,6 +14,8 @@ import { DatePipe } from '@angular/common';
 export class MyEventsComponent implements OnInit {
     events: Event[];    
     user_idr: string;
+    registeredEvents: Event[];
+    filter: Event = new Event();
 
     constructor(private eventService: EventService,
         private router: Router,
@@ -20,10 +23,9 @@ export class MyEventsComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        this.userService.user_idr$.subscribe(user_idr$ => this.user_idr = user_idr$);
-        //this.userService.user_idr$.subscribe(user_idr$ => this.filter.creator_id = user_idr$);
-        //this.userService.getEventsByUser(this.user_idr).then(events => this.events = events);
         this.getEvents();
+        this.userService.user_idr$.subscribe(user_idr$ => this.user_idr = user_idr$);
+        this.userService.getEventsByUser(this.user_idr).then(events => this.registeredEvents = events);
 
     }
 
@@ -34,14 +36,6 @@ export class MyEventsComponent implements OnInit {
     getEvents(): void {
         this.eventService.getAllEvents().then(events => this.events = events);
     }
-
-    filterEvent(event: Event) {
-        //return event.creator_id === "janesecret007@gmail.com";
-        let userId = this.getUserId();
-        return event.creator_id === userId;
-    }
-    //Need to find a way to read this.user_idr
-    //Now "this" is determined as null
 
     getUserId(): string {
         return this.user_idr;

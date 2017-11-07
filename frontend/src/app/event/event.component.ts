@@ -17,6 +17,7 @@ export class EventComponent implements OnInit {
     event_idr: number;
     user_idr: string;
     closeResult: string;
+    term: string = '';
 
     constructor(private eventService: EventService,
                 private router: Router,
@@ -51,18 +52,10 @@ export class EventComponent implements OnInit {
     }
 
     test(): void {
-        //alert(this.event_idr);//This works! It means we can pass event_idr to register.
+        
         alert(this.user_idr);
     }
-    /*
-    registered = false;
-    register(user_id: string, event_id: number) {
-        this.onRegisteredEvent.emit(event_id);
-        this.onRegisteredUser.emit(user_id);
-        this.registered = true;
-    }//then we let another function call register() here to determine user_id
-    */
-
+    
     gotoDetail(event: Event): void {
         this.selectedEvent = event;
         this.router.navigate(['/detail', this.selectedEvent.event_id]);

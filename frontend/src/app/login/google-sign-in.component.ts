@@ -7,8 +7,7 @@ declare const gapi: any;
 
 @Component({
     selector: 'google-signin',
-    templateUrl: './google-sign-in.component.html',
-    styleUrls: ['./google-sign-in.component.css'],
+    templateUrl: './google-sign-in.component.html'
 })
 
 export class GoogleSignInComponent implements AfterViewInit {
@@ -22,7 +21,7 @@ export class GoogleSignInComponent implements AfterViewInit {
     
     userProfile: User = {user_id: '',
                          name: '',
-                         fname: 'bbb',
+                         fname: '',
                          lname: '',
                          email: ''};
 
@@ -71,7 +70,6 @@ export class GoogleSignInComponent implements AfterViewInit {
         }, function onFailure (error) {
             console.log(JSON.stringify(error, undefined, 2));
         }
-        //add function
         );
     }
     
@@ -84,10 +82,6 @@ export class GoogleSignInComponent implements AfterViewInit {
             
             
         });
-        //alert('init');
-        //alert(this.userProfile.email);
-        //this.userService.currentUser.subscribe(user_idr => this.user_idr);
-        //alert(this.user_idr);
     }
 
     public signOut(): void {
@@ -98,7 +92,6 @@ export class GoogleSignInComponent implements AfterViewInit {
     }
 
     public onSignIn(googleUser) {
-        //alert('text');
         this.fShowInfo = true;
         
         var profile = googleUser.getBasicProfile();
@@ -112,14 +105,10 @@ export class GoogleSignInComponent implements AfterViewInit {
                                 this.userProfile.fname = profile.getGivenName(),
                                 this.userProfile.lname = profile.getFamilyName()
                                 this.userProfile.email = profile.getEmail()
-                                //this.userProfile.image_url = profile.getImageUrl()
-                                //@Output() this.userProfile.email;
                             }) 
         this.userService.changeUserId(this.userProfile.email);
         this.userService.changeUserfname(this.userProfile.fname);
         this.userService.changeUserlname(this.userProfile.lname);
-        //alert(this.user_idr);
-        //alert(this.userProfile.email);
     };
 
     createUser(user: User): void {

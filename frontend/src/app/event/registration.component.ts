@@ -29,7 +29,8 @@ export class RegistrationComponent implements OnInit {
         this.userService.user_idr$.subscribe(user_idr$ => this.user_idr = user_idr$);
         this.registrationService.getAllRegistrations().then(registrations => this.registrations = registrations);
         this.newRegistration = new Registration();
-        //this.newRegistration.event_id = 101;
+        //this.newRegistration.revent_id = 101;
+        //this.newRegistration.ruser_id = "janesecret007@gmail.com";
      }
 
     @Input() event_idr: number;//pass this value to registration service
@@ -45,21 +46,26 @@ export class RegistrationComponent implements OnInit {
     
     register(registration: Registration): void {
         //this.submitted = false;
+        console.log(registration);
+        //alert(registration.revent_id);
+        this.getRegisterInfo(registration);
         this.registrationService.register(registration)
         .then(registration => {
+            
             this.registrations.push(registration);
-            registration.event_id = this.event_idr;
-            this.getRegisterInfo(registration);
+            registration.revent_id = this.event_idr;
+            //this.getRegisterInfo(registration);
             this.selectedRegistration = null;
-            //alert(this.newRegistration.event_id);
+            alert('Register successfully');
+            location.reload();
+            
         })
         .catch(this.handleError);
     }
 
     getRegisterInfo(registration: Registration): void {
-        registration.user_id = this.user_idr;
-        registration.event_id = this.event_idr;
-        alert(registration.event_id);
+        registration.ruser_id = this.user_idr;
+        registration.revent_id = this.event_idr;
     }
 
     testr(): void {

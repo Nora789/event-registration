@@ -41,15 +41,7 @@ export class EventCreateComponent implements OnInit {
         this.userService.user_fname$.subscribe(user_fname$ => this.user_fname = user_fname$);
         this.userService.user_lname$.subscribe(user_lname$ => this.user_lname = user_lname$);
         this.newEvent.creator_id = this.user_idr;
-        /*
-        alert(this.newEvent.creator_id);
-        this.newUser.user_id = this.user_idr;
-        this.newUser.fname = this.user_fname;
-        this.newUser.lname = this.user_lname;
-        this.newUser.email = this.user_idr;
-        */
-        //alert(this.newUser.user_id+this.newUser.fname+this.newUser.lname+this.newUser.email);
-        //alert(this.user_idr);
+       
     }
 
     private handleError(error: any):

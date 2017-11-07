@@ -1,5 +1,5 @@
 export class Registration {
     registration_id: number;
-    event_id: number;
-    user_id: string;
+    revent_id: number;
+    ruser_id: string;
 }

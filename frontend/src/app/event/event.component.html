@@ -1,7 +1,14 @@
 <div class="px-3 mb-2">
   <h4>Available Events</h4>
+  <div class="form-group row">
+    <label for="search" class="col-sm-2 col-form-label">Search Event</label>
+    <div class="col-sm-10">
+      <input class="form-control" type="text" placeholder="Event Name" [(ngModel)]="term">
+    </div>
+  </div>
+  <br/>
   <div class="row">
-    <div *ngFor="let event of events" class="col-sm-6" (click)="onSelect(event)"
+    <div *ngFor="let event of events | eventSearchFilter: term" class="col-sm-6" (click)="onSelect(event)"
      [class.selected]="event === selectedEvent">
       <div class="card">
         <div class="card-body">
@@ -12,10 +19,8 @@
           <div *ngFor="let user of event.users" class="font-weight-light">
             {{user.fname}} {{user.lname}}
         </div>
-          <a href="#" (click)="test()" class="btn btn-primary">test</a>
-            <!--This (click)="test()" also works. Can be implemented in register component-->
-            <!--<button class="btn btn-primary" (click)="gotoDetail()" routerLink="detail/:id">View Details</button>-->
             <!-- Button trigger modal -->
+            <br/>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#eventDetails">
                 View Details
             </button>

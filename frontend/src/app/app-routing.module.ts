@@ -5,7 +5,6 @@ import { RouterModule, Routes } from '@angular/router';
 //import { AppComponent } from './app.component';
 import { EventCreateComponent } from './event/event-create.component';
 import { EventComponent } from './event/event.component';
-import { EventDetailComponent } from './event/event-detail.component'
 import { GoogleSignInComponent } from './login/google-sign-in.component';
 import { MyEventsComponent } from './my-events/my-events.component';
  

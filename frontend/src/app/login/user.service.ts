@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Headers, Http } from '@angular/http';
 import { User } from './user';
-import 'rxjs/add/operator/toPromise';
+import { Event } from 'app/event/event';
+//import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class UserService { 
@@ -85,6 +86,7 @@ export class UserService {
 
     getEventsByUser(userId: string): Promise<Event[]> {
         const url = `${this.usersUrl}/events/${userId}`;
+        //const url = `api/events/allEvents`;
         return this.http.get(url)
                    .toPromise()
                    .then(response => response.json() as Event[])

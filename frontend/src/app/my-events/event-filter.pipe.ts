@@ -8,10 +8,7 @@ import { Event } from 'app/event/event';
 })
 
 export class EventFilterPipe implements PipeTransform {
-    transform(items: any[], callback: (item: any) => boolean): any {
-        if (!items || !callback) {
-            return items;
-        }
-        return items.filter(item => callback(item));
+    transform(events: Event[], filter: string): Event[] {
+        return events.filter(event => event.creator_id.toLowerCase().indexOf(filter.toLowerCase()) !== -1);
     }
 }

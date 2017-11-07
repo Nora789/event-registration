@@ -1,11 +1,12 @@
 package com.controllers;
 
-import java.util.Collection;
+import java.util.ArrayList;
+//import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+//import org.springframework.http.HttpStatus;
+//import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,6 +51,7 @@ public class UserController {
 		userService.deleteUser(user_id);
 	}
 	
+	/*
 	@RequestMapping(value = "/events/{user_id:.+com}", method = RequestMethod.GET)
 	public ResponseEntity<Collection<Event>> getUserEvents(@PathVariable String user_id) {
 		//System.out.println(user_id);
@@ -59,6 +61,18 @@ public class UserController {
 			return new ResponseEntity<>(user.getEvents(), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		}
+	}*/
+	
+	@RequestMapping(value = "/events/{user_id:.+com}", method = RequestMethod.GET)
+	public List<Event> getUserEvents(@PathVariable String user_id) {
+		User user = userService.getUser(user_id);
+		
+		if (user != null) {
+			List<Event> list = new ArrayList<Event>(user.getEvents());
+			return list;
+		} else {
+			return new ArrayList<Event>();
 		}
 	}
 

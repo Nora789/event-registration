@@ -4,21 +4,12 @@
       <ng-template ngbTabContent>
         <br/>
           <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-6" *ngFor="let registeredEvent of registeredEvents">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Special title treatment</h4>
-                  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6">
-              <div class="card">
-                <div class="card-body">
-                  <h4 class="card-title">Special title treatment</h4>
-                  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                  <h5 class="card-title">{{registeredEvent.event_name}}</h5>
+                  <p class="card-text"><strong>Date: </strong>{{registeredEvent.date | date: short}}</p>
+                  <p class="card-text"><strong>Time: </strong>{{registeredEvent.start_time}} -- {{registeredEvent.end_time}}</p>
                 </div>
               </div>
             </div>
@@ -30,7 +21,7 @@
         <br/>
         
         <div class="row">
-            <div class="col-sm-6" *ngFor="let event of events | eventfilter: filterEvent">
+            <div class="col-sm-6" *ngFor="let event of events | eventfilter: user_idr">
             <div class="card">
                 <div class="card-body">
                   <h5 class="card-title">{{event.event_name}}</h5>
