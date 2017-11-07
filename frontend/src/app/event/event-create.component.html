@@ -25,7 +25,7 @@
     </form>
   </div>
   
-  <form>
+  <form novalidate (ngSubmit)="onSubmit(f)" #f="ngForm">
     <div class="form-group">
         <label for="address">Creator Email</label>
         <input [(ngModel)]="newEvent.creator_id" type="text" class="form-control" id="creator" placeholder="{{this.user_idr}}" name="creator" readonly>
@@ -36,43 +36,58 @@
     </div>
     <div class="form-group">
       <label for="eventName">Event Name</label>
-      <input [(ngModel)]="newEvent.event_name" type="text" class="form-control" id="eventName" placeholder="Enter event name" name="event_name" required>
-      <div class="invalid-feedback">
-        Please provide a valid name.
+      <input [(ngModel)]="newEvent.event_name" type="text" class="form-control" id="eventName" placeholder="Enter event name" name="event_name" required #event_name="ngModel">
+      <div *ngIf="event_name.invalid && (event_name.dirty || event_name.touched)"
+      class="alert alert-danger">
+        <div *ngIf="event_name.errors.required">
+            Event name is required.
+        </div>
       </div>
     </div>
     <div class="form-group">
         <label for="date">Date</label>
-        <input [(ngModel)]="newEvent.date" type="date" class="form-control" id="date" placeholder="Enter event date" name="date" required>
-        <div class="invalid-feedback">
+        <input [(ngModel)]="newEvent.date" type="date" class="form-control" id="date" placeholder="Enter event date" name="date" required #date="ngModel">
+        <div *ngIf="date.invalid && (date.dirty || date.touched)"
+        class="alert alert-danger">
+          <div *ngIf="date.errors.required">
             Please provide a valid date.
+          </div>
         </div>
     </div>
     <div class="row">
       <div class="col">
         <div class="form-group">
             <label for="date">Start Time</label>
-            <input [(ngModel)]="newEvent.start_time" type="time" class="form-control" id="time1" placeholder="Enter event time" name="stime" required>
-            <div class="invalid-feedback">
-                Please provide a valid start time.
+            <input [(ngModel)]="newEvent.start_time" type="time" class="form-control" id="time1" placeholder="Enter event time" name="stime" required #stime="ngModel">
+            <div *ngIf="stime.invalid && (stime.dirty || stime.touched)"
+            class="alert alert-danger">
+              <div *ngIf="stime.errors.required">
+                Please provide a valid time.
+              </div>
             </div>
         </div>
       </div>
       <div class="col">
         <div class="form-group">
             <label for="date">End Time</label>
-            <input [(ngModel)]="newEvent.end_time" type="time" class="form-control" id="time2" placeholder="Enter event time" name="etime" required>
-            <div class="invalid-feedback">
-                Please provide a valid end time.
+            <input [(ngModel)]="newEvent.end_time" type="time" class="form-control" id="time2" placeholder="Enter event time" name="etime" required #etime="ngModel">
+            <div *ngIf="etime.invalid && (etime.dirty || etime.touched)"
+            class="alert alert-danger">
+              <div *ngIf="etime.errors.required">
+                Please provide a valid time.
+              </div>
             </div>
         </div>
       </div>
     </div>
     <div class="form-group">
         <label for="address">Address</label>
-        <input [(ngModel)]="newEvent.address" type="text" class="form-control" id="address" placeholder="Enter event address" name="address" required>
-        <div class="invalid-feedback">
-            Please provide a valid address.
+        <input [(ngModel)]="newEvent.address" type="text" class="form-control" id="address" placeholder="Enter event address" name="address" required #address="ngModel">
+        <div *ngIf="address.invalid && (address.dirty || address.touched)"
+        class="alert alert-danger">
+          <div *ngIf="address.errors.required">
+                Event address is required.
+          </div>
         </div>
     </div>
     <div class="form-group">
@@ -93,7 +108,7 @@
         <label for="description">Event Description</label>
         <textarea [(ngModel)]="newEvent.description" class="form-control" id="description" rows="4" name="description"></textarea>
     </div>
-    <button type="submit" class="btn btn-primary" (click)="createEvent(newEvent)">Create Event</button>
+    <button type="submit" class="btn btn-primary" [disabled]="f.invalid" (click)="createEvent(newEvent)">Create Event</button>
     <button type="submit" class="btn btn-primary" (click)="goBack()">Cancel</button>
     <button type="submit" class="btn btn-primary" (click)="createUser(newUser)">create user</button>
   </form>
