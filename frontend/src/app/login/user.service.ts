@@ -10,11 +10,13 @@ export class UserService {
     private user_idrSource = new BehaviorSubject<string>("");
     private user_fnameSource = new BehaviorSubject<string>("");
     private user_lnameSource = new BehaviorSubject<string>("");
+    //private isLoggedInSource = new BehaviorSubject<boolean>(false);
     //This "default message can not send to other components"
     user_idr$ = this.user_idrSource.asObservable();
     user_fname$ = this.user_fnameSource.asObservable();
     user_lname$ = this.user_lnameSource.asObservable();
     user_email$ = this.user_idrSource.asObservable();
+    //isLoggedIn$ = this.isLoggedInSource.asObservable();
 
     //public user_idr = "default";
 
@@ -31,6 +33,12 @@ export class UserService {
     changeUserlname(lname: string) {
         this.user_lnameSource.next(lname);
     }
+
+    /*
+    changeLogInStatus(isLoggedIn: boolean) {
+        this.isLoggedInSource.next(isLoggedIn);
+    }
+    */
 
     private headers = new Headers({ 'Content-Type': 'application/json' });
     private usersUrl = 'api/users';

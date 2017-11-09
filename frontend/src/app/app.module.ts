@@ -17,6 +17,7 @@ import { UserService } from './login/user.service';
 import { NavigatorComponent } from './navigator/navigator.component';
 import { EventFilterPipe } from './my-events/event-filter.pipe';
 import { EventSearchFilterPipe } from './event/event-search-filter.pipe';
+import { AuthGuard } from './auth-guard.service';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -43,7 +44,8 @@ import { AppRoutingModule } from './app-routing.module';
     EventService,
     GoogleSignInComponent,
     RegistrationService,
-    UserService
+    UserService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef, AfterViewInit, NgZone, Output } from '@a
 import { AuthService, AppGlobals } from 'angular2-google-login';
 import { User } from './user';
 import { UserService } from './user.service';
+import { AuthGuard } from 'app/auth-guard.service';
 
 declare const gapi: any;
 
@@ -13,10 +14,9 @@ declare const gapi: any;
 export class GoogleSignInComponent implements AfterViewInit {
     constructor (private element: ElementRef,  
                 private zone: NgZone,
-                private userService: UserService) {
+                private userService: UserService,
+                private authGuard: AuthGuard) {
         console.log('ElementRef: ', this.element);
-        //this.userService.currentUser.subscribe(user_idr => this.user_idr);
-        //alert(this.user_idr);
     }
     
     userProfile: User = {user_id: '',
@@ -30,6 +30,7 @@ export class GoogleSignInComponent implements AfterViewInit {
     users: User[];
     selectedUser: User = null;
     newUser: User;
+    userImageUrl: string;
     
     private clientId: string = '1082300110530-4aqfb1b6v42icls9n4f1jg4imvld5uu0.apps.googleusercontent.com';
 
@@ -88,6 +89,7 @@ export class GoogleSignInComponent implements AfterViewInit {
         var auth2 = gapi.auth2.getAuthInstance();
         auth2.signOut().then(function () {
           console.log('User signed out.');
+          this.userService.changeLogInStatus(false);
         });
     }
 
@@ -101,14 +103,18 @@ export class GoogleSignInComponent implements AfterViewInit {
         console.log('Family Name: ' + profile.getFamilyName());
         console.log("Image URL: " + profile.getImageUrl());
         console.log("Email: " + profile.getEmail());
+        //console.log(this.userService.isLoggedIn$);
         this.zone.run(() => { this.userProfile.name = profile.getName(),
                                 this.userProfile.fname = profile.getGivenName(),
-                                this.userProfile.lname = profile.getFamilyName()
-                                this.userProfile.email = profile.getEmail()
-                            }) 
+                                this.userProfile.lname = profile.getFamilyName(),
+                                this.userProfile.email = profile.getEmail(),
+                                this.userImageUrl = profile.getImageUrl();
+                            })
+        
         this.userService.changeUserId(this.userProfile.email);
         this.userService.changeUserfname(this.userProfile.fname);
         this.userService.changeUserlname(this.userProfile.lname);
+        this.authGuard.changeLogInStatus(true); 
     };
 
     createUser(user: User): void {

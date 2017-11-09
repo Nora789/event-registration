@@ -63,11 +63,6 @@ export class EventCreateComponent implements OnInit {
         this.goBack();
     }
 
-    showInfo(event: Event): void {
-        this.selectedEvent = event;
-        //this.router.navigate(['/information'], this.selectedEvent.event_id); 
-    }
-
     goBack(): void {
         this.location.back();
         //alert(this.user_idr);
