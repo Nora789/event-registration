@@ -8,13 +8,15 @@ import { EventComponent } from './event/event.component';
 import { GoogleSignInComponent } from './login/google-sign-in.component';
 import { MyEventsComponent } from './my-events/my-events.component';
 import { AuthGuard } from './auth-guard.service';
+import { SignInReminderComponent } from 'app/login/sign-in-reminder.component';
  
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
   { path: 'home', component: EventComponent },
   { path: 'create', component: EventCreateComponent, canActivate:[AuthGuard] },
   { path: 'myevents/:id', component: MyEventsComponent, canActivate:[AuthGuard]},
-  { path: 'login', component: GoogleSignInComponent}
+  { path: 'login', component: GoogleSignInComponent},
+  { path: 'reminder', component: SignInReminderComponent}
 ];
  
 @NgModule({

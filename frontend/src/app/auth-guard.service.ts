@@ -20,7 +20,7 @@ export class AuthGuard implements CanActivate {
       this.isLoggedIn$.subscribe(isLoggedIn$ => this.isLoggedIn = isLoggedIn$);
       console.log(this.isLoggedIn);
       if (!this.isLoggedIn) {
-        this.router.navigate(['login']);
+        this.router.navigate(['reminder']);
       }
       return true;
     }

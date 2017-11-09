@@ -18,6 +18,7 @@ import { NavigatorComponent } from './navigator/navigator.component';
 import { EventFilterPipe } from './my-events/event-filter.pipe';
 import { EventSearchFilterPipe } from './event/event-search-filter.pipe';
 import { AuthGuard } from './auth-guard.service';
+import { SignInReminderComponent } from './login/sign-in-reminder.component';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -31,7 +32,8 @@ import { AppRoutingModule } from './app-routing.module';
     NavigatorComponent,
     MyEventsComponent,
     EventFilterPipe,
-    EventSearchFilterPipe
+    EventSearchFilterPipe,
+    SignInReminderComponent
   ],
   imports: [
     BrowserModule,
