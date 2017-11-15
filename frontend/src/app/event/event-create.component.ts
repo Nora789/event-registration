@@ -78,7 +78,7 @@ export class EventCreateComponent implements OnInit {
             this.events.push(event);
             this.getCreator(event);
             this.selectedEvent = null;
-            alert(this.newEvent.creator_id);
+            alert('Create successfully');
         })
         .catch(this.handleError);
     }

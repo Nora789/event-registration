@@ -3,7 +3,6 @@
 <h4>Create a Event</h4>
 
 <div class="w-50">
-  
   <div [hidden]=true>
     <form>
       <div class="form-group">
@@ -108,7 +107,7 @@
         <label for="description">Event Description</label>
         <textarea [(ngModel)]="newEvent.description" class="form-control" id="description" rows="4" name="description"></textarea>
     </div>
-    <button type="submit" class="btn btn-primary" [disabled]="f.invalid" (click)="createEvent(newEvent)">Create Event</button>
+    <button type="submit" class="btn btn-primary" [disabled]="f.invalid" (click)="createEvent(newEvent);createUser(newUser)">Create Event</button>
     <button type="submit" class="btn btn-primary" (click)="goBack()">Cancel</button>
     <button type="submit" class="btn btn-primary" (click)="createUser(newUser)">create user</button>
   </form>

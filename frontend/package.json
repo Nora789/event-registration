@@ -27,7 +27,7 @@
     "@angular/router": "^4.4.4",
     "@ng-bootstrap/ng-bootstrap": "^1.0.0-beta.5",
     "core-js": "^2.4.1",
-    "rxjs": "^5.0.1",
+    "rxjs": "^5.5.2",
     "ts-helpers": "^1.1.1",
     "typescript": "^2.5.3",
     "zone.js": "^0.8.18"

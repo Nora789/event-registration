@@ -19,6 +19,8 @@ export class MyEventsComponent implements OnInit {
     registeredEvents: Event[];
     filter: Event = new Event();
     isEvent: boolean = true;
+    selectedEvent: Event;
+    event_idr: number;
 
     constructor(private eventService: EventService,
         private router: Router,
@@ -36,20 +38,18 @@ export class MyEventsComponent implements OnInit {
 
     }
 
+    onSelect(event: Event): number {
+        this.selectedEvent = event;
+        this.event_idr = this.selectedEvent.event_id;
+        return this.selectedEvent.event_id;
+    }
+
     getEvents(): void {
         this.eventService.getAllEvents().then(events => this.events = events);
     }
 
     getUserId(): string {
         return this.user_idr;
-    }
-
-    unregister(registration: Registration): void {
-        this.registrationService
-            .deleteRegistration(registration)
-            .then(() => {
-
-            })
     }
 
     test(): void {

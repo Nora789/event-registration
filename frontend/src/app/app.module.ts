@@ -19,6 +19,7 @@ import { EventFilterPipe } from './my-events/event-filter.pipe';
 import { EventSearchFilterPipe } from './event/event-search-filter.pipe';
 import { AuthGuard } from './auth-guard.service';
 import { SignInReminderComponent } from './login/sign-in-reminder.component';
+import { EditMyEvent } from './my-events/edit-my-event.component';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -33,7 +34,8 @@ import { AppRoutingModule } from './app-routing.module';
     MyEventsComponent,
     EventFilterPipe,
     EventSearchFilterPipe,
-    SignInReminderComponent
+    SignInReminderComponent,
+    EditMyEvent
   ],
   imports: [
     BrowserModule,

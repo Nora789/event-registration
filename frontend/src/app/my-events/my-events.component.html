@@ -1,22 +1,6 @@
 <div class="px-3 mb-2">
   <ngb-tabset type="pills" justify="center">
-    <ngb-tab title="As Guest">
-      <ng-template ngbTabContent>Registered events:
-        <br/>
-        <div class="row">
-          <div class="col-sm-6" *ngFor="let registeredEvent of registeredEvents">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">{{registeredEvent.event_name}}</h5>
-                <p class="card-text"><strong>Date: </strong>{{registeredEvent.date | date: short}}</p>
-                <p class="card-text"><strong>Time: </strong>{{registeredEvent.start_time}} -- {{registeredEvent.end_time}}</p>
-                <button type="button" class="btn btn-primary" (click)="test()">Unregister</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        </ng-template>
-      </ngb-tab>
+    
     <ngb-tab title="As Host">
       <ng-template ngbTabContent>Created events:
         <br/>
@@ -28,7 +12,12 @@
                   <h5 class="card-title">{{event.event_name}}</h5>
                   <p class="card-text"><strong>Date: </strong>{{event.date | date: short}}</p>
                   <p class="card-text"><strong>Time: </strong>{{event.start_time}} -- {{event.end_time}}</p>
-                  <button type="button" class="btn btn-primary" (click)="test()">test user id</button>
+                  <p class="card-text"><strong>Address: </strong>{{event.address}}</p>
+                  <p class="card-text"><strong>Event Type: </strong>{{event.event_type}}</p>
+                  <p class="card-text"><strong>Dress Code: </strong>{{event.dress_code}}</p>
+                  <p class="card-text"><strong>Creator: </strong>{{event.creator_id}}</p>
+                  <p class="card-text"><strong>Description: </strong>{{event.description}}</p>
+                  <a routerLink="/edit/{{event.event_id}}" class="btn btn-primary">Edit</a>
                 </div>
             </div>
             </div>
@@ -36,5 +25,26 @@
         </div>
       </ng-template>
     </ngb-tab>
+    <ngb-tab title="As Guest">
+      <ng-template ngbTabContent>Registered events:
+        <br/>
+        <div class="row">
+          <div class="col-sm-6" *ngFor="let registeredEvent of registeredEvents">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">{{registeredEvent.event_name}}</h5>
+                <p class="card-text"><strong>Date: </strong>{{registeredEvent.date | date: short}}</p>
+                <p class="card-text"><strong>Time: </strong>{{registeredEvent.start_time}} -- {{registeredEvent.end_time}}</p>
+                <p class="card-text"><strong>Address: </strong>{{registeredEvent.address}}</p>
+                <p class="card-text"><strong>Event Type: </strong>{{registeredEvent.event_type}}</p>
+                <p class="card-text"><strong>Dress Code: </strong>{{registeredEvent.dress_code}}</p>
+                <p class="card-text"><strong>Creator: </strong>{{registeredEvent.creator_id}}</p>
+                <p class="card-text"><strong>Description: </strong>{{registeredEvent.description}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        </ng-template>
+      </ngb-tab>
   </ngb-tabset>
 </div>

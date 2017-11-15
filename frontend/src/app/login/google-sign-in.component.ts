@@ -1,4 +1,5 @@
 import { Component, OnInit, ElementRef, AfterViewInit, NgZone, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService, AppGlobals } from 'angular2-google-login';
 import { User } from './user';
 import { UserService } from './user.service';
@@ -15,7 +16,8 @@ export class GoogleSignInComponent implements AfterViewInit {
     constructor (private element: ElementRef,  
                 private zone: NgZone,
                 private userService: UserService,
-                private authGuard: AuthGuard) {
+                private authGuard: AuthGuard,
+                private router: Router) {
         console.log('ElementRef: ', this.element);
     }
     
@@ -52,7 +54,8 @@ export class GoogleSignInComponent implements AfterViewInit {
             that.auth2 = gapi.auth2.init({
                 client_id: that.clientId,
                 cookiepolicy: 'single_host_origin',
-                scope: that.scope
+                scope: that.scope,
+                //redirect_uri: 'http://localhost:4200/home'
             });
             //that.attachSignin(that.element.nativeElement.firstChild);
         });
@@ -80,8 +83,6 @@ export class GoogleSignInComponent implements AfterViewInit {
         //this.isSignedIn = this.auth2.isSignedIn.get();
         gapi.signin2.render('my-signin2', {    
             'onsuccess': param => this.onSignIn(param),
-            
-            
         });
     }
 
@@ -89,7 +90,7 @@ export class GoogleSignInComponent implements AfterViewInit {
         var auth2 = gapi.auth2.getAuthInstance();
         auth2.signOut().then(function () {
           console.log('User signed out.');
-          this.userService.changeLogInStatus(false);
+          this.authGuard.changeLogInStatus(false);
         });
     }
 
@@ -115,6 +116,7 @@ export class GoogleSignInComponent implements AfterViewInit {
         this.userService.changeUserfname(this.userProfile.fname);
         this.userService.changeUserlname(this.userProfile.lname);
         this.authGuard.changeLogInStatus(true); 
+        //this.router.navigate(['home']);
     };
 
     createUser(user: User): void {
@@ -129,5 +131,8 @@ export class GoogleSignInComponent implements AfterViewInit {
             });
     }
 
+    refresh(): void {
+        location.reload();
+    }
     
 }
