@@ -1,6 +1,6 @@
 # event-registration
 
-This is an in-progress project. Frontend is Angular, backend is a spring boot rest api. 
+This is a capstone project. Frontend is Angular, backend is a spring boot rest api. 
 
 # Requirements
 * Java JDK
